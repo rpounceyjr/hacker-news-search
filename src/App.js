@@ -5,6 +5,7 @@ import "./App.css";
 import EmptySearchErrorMessage from "./components/EmptySearchErrorMessage";
 import ErrorMessage from "./components/ErrorMessage";
 import NewSearchMessage from "./components/NewSearchMessage";
+import NoResultsMessage from "./components/NoResultsMessage"
 import SearchHistoryElement from "./components/SearchHistoryElement";
 import SearchInput from "./components/SearchInput";
 import SearchResult from "./components/SearchResult";
@@ -12,7 +13,7 @@ import axios from "axios";
 
 function App() {
   const [queryState, setQueryState] = useState("");
-  const [searchResults, setSearchResults] = useState();
+  const [searchResults, setSearchResults] = useState([]);
   const [errorExists, setErrorExists] = useState(false);
   const [emptySearch, setEmptySearch] = useState(false);
   const [submittedSearch, setSubmittedSearch] = useState(false);
@@ -48,6 +49,7 @@ function App() {
       const data = await axios.get(
         `https://hn.algolia.com/api/v1/search?query=${query}`
       );
+
       setQueryState("");
       return setSearchResults(data.data.hits);
     } catch (err) {
@@ -82,7 +84,11 @@ function App() {
             ))}
           </Col>
           <Col md={9} className="text-right align-right">
-            {console.log("search results", searchResults)}
+            {submittedSearch &&
+              searchResults &&
+              searchResults.length === 0 &&
+              !errorExists &&
+              !emptySearch && <NoResultsMessage />}
             {searchResults && searchResults.length > 0 && (
               <h4>Search Results:</h4>
             )}
