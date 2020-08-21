@@ -26,6 +26,13 @@ function App() {
 
     setErrorExists(false);
 
+    if(query.trim() === ""){
+      setSearchResults([]);
+      return setErrorExists(true);
+    }
+
+    setErrorExists(false);
+
     dispatch({
       type: "ADD_TO_SEARCH_HISTORY",
       searchTerm: queryState,
