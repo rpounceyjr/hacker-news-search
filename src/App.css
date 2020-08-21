@@ -57,6 +57,10 @@ a {
   color: chartreuse;
 }
 
+.new-search-message {
+  text-align: center;
+}
+
 .search-result-div {
   border-bottom: 1px solid black;
   border-right: 1px solid black;
