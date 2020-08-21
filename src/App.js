@@ -45,7 +45,7 @@ function App() {
 
     try {
       const data = await axios.get(
-        `http://hn.algolia.com/api/v1/search?query=${query}`
+        `https://hn.algolia.com/api/v1/search?query=${query}`
       );
       setQueryState("");
       return setSearchResults(data.data.hits);
