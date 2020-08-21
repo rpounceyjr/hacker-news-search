@@ -28,6 +28,7 @@ function App() {
   async function submitSearch(query, event) {
     event.preventDefault();
 
+    setSearchResults();
     setErrorExists(false);
     setEmptySearch(false);
     setSubmittedSearch(true);
