@@ -4,7 +4,7 @@ import { Navbar, Form, FormControl, Button } from "react-bootstrap";
 function SearchInput({ handleInputChange, submitSearch, query }) {
   return (
     <Navbar className="navbar" bg="dark" expand="lg">
-      <Navbar.Brand href="#home">Hacker News Search</Navbar.Brand>
+      <Navbar.Brand>Hacker News Search</Navbar.Brand>
       <Form
         inline
         className="ml-auto"
