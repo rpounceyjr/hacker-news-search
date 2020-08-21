@@ -1,3 +1,11 @@
+body {
+  font-family: 'Share Tech Mono', monospace;
+  color: chartreuse;
+  background-color: lightslategray;
+}
+a {
+  color: chartreuse;
+}
 .App {
   text-align: center;
 }
@@ -35,4 +43,33 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.navbar {
+  margin-bottom: 50px;  
+}
+
+.navbar-brand {
+  color: chartreuse;
+}
+
+.search-result-div {
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+}
+
+.search-history-element {
+  margin: 0px 0px;
+}
+
+.search-history-element {
+  border: 1px solid black;
+}
+
+.search-history-element:hover,
+.search-result-span:hover {
+  cursor: pointer;
+  text-transform: uppercase;
 }
