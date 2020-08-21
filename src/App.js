@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import "./App.css";
+import EmptySearchErrorMessage from "./components/EmptySearchErrorMessage";
 import ErrorMessage from "./components/ErrorMessage";
 import SearchHistoryElement from "./components/SearchHistoryElement";
 import SearchInput from "./components/SearchInput";
@@ -12,6 +13,7 @@ function App() {
   const [queryState, setQueryState] = useState("");
   const [searchResults, setSearchResults] = useState();
   const [errorExists, setErrorExists] = useState(false);
+  const [emptySearch, setEmptySearch] = useState(false);
 
   const userSearchHistory = useSelector((state) => state.searchHistory);
 
@@ -25,9 +27,11 @@ function App() {
     event.preventDefault();
 
     setErrorExists(false);
+    setEmptySearch(false);
 
     if(query.trim() === ""){
       setSearchResults([]);
+      setEmptySearch(true);
       return setErrorExists(true);
     }
 
@@ -72,6 +76,7 @@ function App() {
           </Col>
           <Col md={9} className="text-right align-right">
             {errorExists && <ErrorMessage />}
+            {emptySearch && <EmptySearchErrorMessage />}
             {searchResults &&
               searchResults.map(
                 (result) =>
