@@ -15,6 +15,7 @@ function App() {
   const [searchResults, setSearchResults] = useState();
   const [errorExists, setErrorExists] = useState(false);
   const [emptySearch, setEmptySearch] = useState(false);
+  const [submittedSearch, setSubmittedSearch] = useState(false);
 
   const userSearchHistory = useSelector((state) => state.searchHistory);
 
@@ -29,6 +30,7 @@ function App() {
 
     setErrorExists(false);
     setEmptySearch(false);
+    setSubmittedSearch(true);
 
     if (query.trim() === "") {
       setSearchResults([]);
@@ -62,7 +64,11 @@ function App() {
         query={queryState}
       />
       <Container>
-        {userSearchHistory.length === 0 && <NewSearchMessage />}
+        {userSearchHistory.length === 0 && !submittedSearch && (
+          <NewSearchMessage />
+        )}
+        {errorExists && <ErrorMessage />}
+        {emptySearch && <EmptySearchErrorMessage />}
         <Row>
           <Col md={3} className="text-center">
             {userSearchHistory.length > 0 && <h4>Previous Searches:</h4>}
@@ -75,9 +81,10 @@ function App() {
             ))}
           </Col>
           <Col md={9} className="text-right align-right">
-            {errorExists && <ErrorMessage />}
-            {emptySearch && <EmptySearchErrorMessage />}
-            {searchResults && <h4>Search Results:</h4>}
+            {console.log("search results", searchResults)}
+            {searchResults && searchResults.length > 0 && (
+              <h4>Search Results:</h4>
+            )}
             {searchResults &&
               searchResults.map(
                 (result) =>
