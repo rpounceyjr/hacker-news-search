@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import "./App.css";
 import EmptySearchErrorMessage from "./components/EmptySearchErrorMessage";
 import ErrorMessage from "./components/ErrorMessage";
-import NewSearchMessage from "./components/NewSearchMessage"
+import NewSearchMessage from "./components/NewSearchMessage";
 import SearchHistoryElement from "./components/SearchHistoryElement";
 import SearchInput from "./components/SearchInput";
 import SearchResult from "./components/SearchResult";
@@ -62,10 +62,10 @@ function App() {
         query={queryState}
       />
       <Container>
-      {userSearchHistory.length === 0 && <NewSearchMessage />}
+        {userSearchHistory.length === 0 && <NewSearchMessage />}
         <Row>
           <Col md={3} className="text-center">
-            {userSearchHistory.length > 0 &&<h4>Previous Searches:</h4>}
+            {userSearchHistory.length > 0 && <h4>Previous Searches:</h4>}
             {userSearchHistory.map((searchTerm, index) => (
               <SearchHistoryElement
                 key={index}
@@ -75,7 +75,6 @@ function App() {
             ))}
           </Col>
           <Col md={9} className="text-right align-right">
-          {console.log("search history", userSearchHistory)}
             {errorExists && <ErrorMessage />}
             {emptySearch && <EmptySearchErrorMessage />}
             {searchResults && <h4>Search Results:</h4>}
