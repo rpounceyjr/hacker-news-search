@@ -5,7 +5,7 @@ import "./App.css";
 import EmptySearchErrorMessage from "./components/EmptySearchErrorMessage";
 import ErrorMessage from "./components/ErrorMessage";
 import NewSearchMessage from "./components/NewSearchMessage";
-import NoResultsMessage from "./components/NoResultsMessage"
+import NoResultsMessage from "./components/NoResultsMessage";
 import SearchHistoryElement from "./components/SearchHistoryElement";
 import SearchInput from "./components/SearchInput";
 import SearchResult from "./components/SearchResult";
@@ -14,10 +14,14 @@ import axios from "axios";
 function App() {
   const [queryState, setQueryState] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  // A bad request sets errorExists to true, rendering ErrorMessage
   const [errorExists, setErrorExists] = useState(false);
+  // Renders EmptySearchErrorMessage if search input is blank
   const [emptySearch, setEmptySearch] = useState(false);
+  // Set to false, submittedSearch prevents EmptySearchErrorMessage from rendering
+  // and allows rendering of NewSearchMessage
   const [submittedSearch, setSubmittedSearch] = useState(false);
-
+  // Previous search terms are saved to the store
   const userSearchHistory = useSelector((state) => state.searchHistory);
 
   const dispatch = useDispatch();
